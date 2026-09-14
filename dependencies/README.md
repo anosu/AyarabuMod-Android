@@ -13,7 +13,7 @@ Toast 的 Utility.dll 通过 `shared/Utility` 源码构建，使用该共享项�
 更新引用时先保留完整导出，再运行：
 
 ```powershell
-pwsh -NoProfile -File scripts/sync-dependencies.ps1 -InteropDirectory dependencies/interop-backup -MelonLoaderDirectory <运行时-loader/net6目录>
+pwsh -NoProfile -File shared/ModEngineering/scripts/sync-dependencies.ps1 -RepositoryRoot . -InteropDirectory dependencies/interop-backup -MelonLoaderDirectory <运行时-loader/net6目录>
 ```
 
 脚本根据 csproj 显式 Reference 列表同步必要 DLL；源目录必须不同于目标目录，目标中多余文件会移除。因此完整导出必须放在 interop-backup，而非目标 assemblies 目录。

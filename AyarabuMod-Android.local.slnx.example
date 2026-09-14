@@ -1,5 +1,0 @@
-<Solution>
-    <Project Path="src/AyarabuMod/AyarabuMod.csproj" />
-    <Project Path="tests/AyarabuMod.Tests/AyarabuMod.Tests.csproj" />
-    <Project Path="../Utility/src/Utility/Utility.csproj" />
-</Solution>

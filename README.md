@@ -65,12 +65,12 @@ translations/
 ```powershell
 git submodule update --init --recursive
 dotnet test tests/AyarabuMod.Tests/AyarabuMod.Tests.csproj -c Release
-pwsh -NoProfile -File scripts/build-release.ps1
+python shared/ModEngineering/scripts/project.py package
 ```
 
 输出：`artifacts/release/v1.0.0/AyarabuMod-Android.zip`。独立测试覆盖 CDN 路径、缓存校验、失败回退、并发合并和剧情隔离。Unity/ARM64 hook 和中文字体显示仍需在设备中验证。
 
-目录和发布流程与其他 Android 模组保持一致：`AyarabuMod/`、`AyarabuMod.Tests/`、`dependencies/`、`scripts/`、`docs/`、`.github/workflows/build.yml` 和 `AyarabuMod-Android.slnx`。构建和 CI 细节见 [docs/BUILDING.md](docs/BUILDING.md)，编译引用见 [dependencies/README.md](dependencies/README.md)。
+源码位于 `src/AyarabuMod`，测试位于 `tests/AyarabuMod.Tests`。构建和 CI 细节见[公共工程说明](https://github.com/anosu/ModEngineering/blob/main/docs/CONVENTIONS.md)，编译引用见 [dependencies/README.md](dependencies/README.md)。
 
 推送和 PR 自动执行格式检查、测试及打包，普通 push/PR 不上传测试包。推送与项目版本一致的 `v*` 标签自动创建或更新 GitHub Release，附带 ZIP 和 SHA256SUMS.txt。
 
@@ -78,11 +78,11 @@ pwsh -NoProfile -File scripts/build-release.ps1
 
 ```powershell
 ../Tools/LemonLoader.Patcher/CLI/LemonLoader.Patcher.CLI.exe patch ../Tools/ayarabu.apk --output artifacts/ayarabu-lemonloader-unsigned.apk --release ../Tools/LemonLoader-runtime-android-arm64.zip --interop-output dependencies/interop-backup
-pwsh -NoProfile -File scripts/sync-dependencies.ps1 -InteropDirectory dependencies/interop-backup -MelonLoaderDirectory <解压后的运行时-loader/net6目录>
+pwsh -NoProfile -File shared/ModEngineering/scripts/sync-dependencies.ps1 -RepositoryRoot . -InteropDirectory dependencies/interop-backup -MelonLoaderDirectory <解压后的运行时-loader/net6目录>
 ```
 
 生成的 APK 未签名且未对齐，不是可直接安装的发布包；需要按本机 Android 工具链完成 zipalign 和签名。mod 发布 ZIP 不携带游戏或加载器程序集。
 
-## 统一工程入口
+## 开发
 
-源码已迁移到 `src/`，独立测试位于 `tests/`。构建、VS 联调和发布方式以 [docs/BUILDING.md](docs/BUILDING.md) 为准；项目差异配置在 `mod.json`，公共实现来自固定的 `shared/ModEngineering`。
+源码位于 `src/`，测试位于 `tests/`。项目配置由 `.csproj` 管理，依赖版本由 Git 子模块记录。构建、VS 联调和发布命令见[公共工程说明](https://github.com/anosu/ModEngineering/blob/main/docs/CONVENTIONS.md)。

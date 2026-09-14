@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <GenerateModVersion>true</GenerateModVersion>
+        <ModPlatform>android</ModPlatform>
         <TargetFramework>net6.0</TargetFramework>
         <AssemblyName>AyarabuMod</AssemblyName>
         <Product>AyarabuMod</Product>
@@ -52,5 +52,5 @@
             Private="false"
         />
     </ItemGroup>
-    <Import Project="$(ModRepositoryRoot)build/SharedDependencies.props" />
+    <Import Project="$(ModRepositoryRoot)shared/ModEngineering/build/SharedDependencies.props" />
 </Project>
