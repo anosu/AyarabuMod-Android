@@ -8,7 +8,6 @@
   "tests": [
     "tests/AyarabuMod.Tests/AyarabuMod.Tests.csproj"
   ],
-  "useExtension": false,
   "package": {
     "name": "AyarabuMod-Android.zip",
     "files": [
@@ -22,5 +21,5 @@
       }
     ]
   },
-  "engineeringRevision": "0b038f40808e29dcd31c2de5df14f2f37953ca34"
+  "engineeringRevision": "350e407a5aca296a47b7a5935e884fce77c6ea5c"
 }

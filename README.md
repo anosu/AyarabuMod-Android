@@ -21,7 +21,7 @@ Mods/AyarabuMod/AyarabuMod.dll
 Mods/AyarabuMod/Utility.dll
 ```
 
-首次运行生成 `UserData/AyarabuMod.cfg`；缓存目录为 `UserData/AyarabuMod/translations/zh-Hans/`。安装时请同时复制发布包内的 `Utility.dll`，它提供 Toast 通知，不需要 Extension.dll。
+首次运行生成 `UserData/AyarabuMod.cfg`；缓存目录为 `UserData/AyarabuMod/translations/zh-Hans/`。安装时请同时复制发布包内的 `Utility.dll`，它提供 Toast 通知。
 
 ```toml
 [Ayarabu.Translation]
