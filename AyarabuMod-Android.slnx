@@ -1,0 +1,5 @@
+<Solution>
+    <Project Path="AyarabuMod/AyarabuMod.csproj" />
+    <Project Path="AyarabuMod.Tests/AyarabuMod.Tests.csproj" />
+    <Project Path="shared/Utility/Utility/Utility.csproj" />
+</Solution>
