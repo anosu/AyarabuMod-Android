@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <GenerateModVersion>true</GenerateModVersion>
         <TargetFramework>net6.0</TargetFramework>
         <AssemblyName>AyarabuMod</AssemblyName>
         <Product>AyarabuMod</Product>
@@ -12,7 +13,7 @@
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <DebugType>none</DebugType>
         <DependencyRoot Condition="'$(DependencyRoot)' == ''"
-            >$(MSBuildProjectDirectory)/../dependencies</DependencyRoot>
+            >$(ModRepositoryRoot)dependencies</DependencyRoot>
         <MelonLoaderReferenceDirectory Condition="'$(MelonLoaderReferenceDirectory)' == ''"
             >$(DependencyRoot)/melonloader/net6</MelonLoaderReferenceDirectory>
         <GameInteropReferenceDirectory Condition="'$(GameInteropReferenceDirectory)' == ''"
@@ -51,11 +52,5 @@
             Private="false"
         />
     </ItemGroup>
-    <Target Name="ValidateLocalDependencies" BeforeTargets="ResolveAssemblyReferences">
-        <Error
-            Condition="'%(Reference.HintPath)' != '' And !Exists('%(Reference.HintPath)')"
-            Text="Required dependency is missing: %(Reference.HintPath). See dependencies/README.md."
-        />
-    </Target>
-    <Import Project="../build/SharedDependencies.props" />
+    <Import Project="$(ModRepositoryRoot)build/SharedDependencies.props" />
 </Project>

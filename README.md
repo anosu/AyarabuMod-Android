@@ -64,7 +64,7 @@ translations/
 
 ```powershell
 git submodule update --init --recursive
-dotnet test AyarabuMod.Tests/AyarabuMod.Tests.csproj -c Release
+dotnet test tests/AyarabuMod.Tests/AyarabuMod.Tests.csproj -c Release
 pwsh -NoProfile -File scripts/build-release.ps1
 ```
 
@@ -72,7 +72,7 @@ pwsh -NoProfile -File scripts/build-release.ps1
 
 目录和发布流程与其他 Android 模组保持一致：`AyarabuMod/`、`AyarabuMod.Tests/`、`dependencies/`、`scripts/`、`docs/`、`.github/workflows/build.yml` 和 `AyarabuMod-Android.slnx`。构建和 CI 细节见 [docs/BUILDING.md](docs/BUILDING.md)，编译引用见 [dependencies/README.md](dependencies/README.md)。
 
-推送和 PR 自动执行格式检查、测试及打包，构建产物作为 Actions artifact 保留。推送与项目版本一致的 `v*` 标签自动创建或更新 GitHub Release，附带 ZIP 和 SHA256SUMS.txt。
+推送和 PR 自动执行格式检查、测试及打包，普通 push/PR 不上传测试包。推送与项目版本一致的 `v*` 标签自动创建或更新 GitHub Release，附带 ZIP 和 SHA256SUMS.txt。
 
 `dependencies/melonloader/net6` 来自 Tools 的运行时 ZIP；游戏引用由同目录 Patcher 从原始 APK 生成。完整导出放在忽略的 `dependencies/interop-backup/`，`interop/assemblies/` 仅保留编译需要的三个 DLL。游戏更新时重新生成：
 
@@ -82,3 +82,7 @@ pwsh -NoProfile -File scripts/sync-dependencies.ps1 -InteropDirectory dependenci
 ```
 
 生成的 APK 未签名且未对齐，不是可直接安装的发布包；需要按本机 Android 工具链完成 zipalign 和签名。mod 发布 ZIP 不携带游戏或加载器程序集。
+
+## 统一工程入口
+
+源码已迁移到 `src/`，独立测试位于 `tests/`。构建、VS 联调和发布方式以 [docs/BUILDING.md](docs/BUILDING.md) 为准；项目差异配置在 `mod.json`，公共实现来自固定的 `shared/ModEngineering`。

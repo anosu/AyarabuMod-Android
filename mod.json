@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "repository": "AyarabuMod-Android",
+  "github": "anosu/AyarabuMod-Android",
+  "kind": "android",
+  "assembly": "AyarabuMod",
+  "project": "src/AyarabuMod/AyarabuMod.csproj",
+  "tests": [
+    "tests/AyarabuMod.Tests/AyarabuMod.Tests.csproj"
+  ],
+  "useExtension": false,
+  "package": {
+    "name": "AyarabuMod-Android.zip",
+    "files": [
+      {
+        "destination": "Mods/AyarabuMod/AyarabuMod.dll",
+        "source": "output/AyarabuMod.dll"
+      },
+      {
+        "destination": "Mods/AyarabuMod/Utility.dll",
+        "source": "output/Utility.dll"
+      }
+    ]
+  },
+  "engineeringRevision": "0b038f40808e29dcd31c2de5df14f2f37953ca34"
+}

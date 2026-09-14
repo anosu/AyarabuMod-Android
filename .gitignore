@@ -25,3 +25,10 @@ artifacts/
 /dependencies/managed/
 # Visual Studio solution containing machine-local shared project paths
 /*.local.slnx
+
+artifacts/
+**/bin/
+**/obj/
+*.local.slnx
+SharedDependencies.local.props
+Build.local.props
