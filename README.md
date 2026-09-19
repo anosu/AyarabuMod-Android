@@ -1,6 +1,6 @@
 # AyarabuMod Android
 
-あやかしランブル！的 LemonLoader ARM64 翻译 mod。基于 `Tools/ayarabu.apk`（Unity 6000.0.56f1）生成的 Interop 引用，版本 1.0.0。
+あやかしランブル！的 LemonLoader ARM64 翻译 mod。基于 `Tools/ayarabu.apk`（Unity 6000.0.56f1）生成的 Interop 引用，版本 1.1.0。
 
 ## 功能
 
@@ -9,6 +9,7 @@
 - 内存缓存、磁盘缓存、并发请求合并、30 秒失败冷却、可选清单哈希校验、损坏缓存容错及离线回退。
 - 后台加载优先发布本地副本；切换剧情不会误用上一段剧情，退出时取消请求。
 - 游戏内 Toast 提示 mod 加载、翻译下载失败、本地缓存回退和同步等待超时。
+- 剧情语音中断开关：关闭时点击推进到没有语音的台词不会切断上一条语音，而是让它继续播完。
 
 旧 Frida 的 `App.Adventure` 已不适用于这个 APK，因此使用核实后的 `AdventureTask`。不包含 GCMod 专属的主数据、战斗或字体样式功能。
 
@@ -68,7 +69,7 @@ dotnet test tests/AyarabuMod.Tests/AyarabuMod.Tests.csproj -c Release
 python shared/ModEngineering/scripts/project.py package
 ```
 
-输出：`artifacts/release/v1.0.0/AyarabuMod-Android.zip`。独立测试覆盖 CDN 路径、缓存校验、失败回退、并发合并和剧情隔离。Unity/ARM64 hook 和中文字体显示仍需在设备中验证。
+输出：`artifacts/release/v1.1.0/AyarabuMod-Android.zip`。独立测试覆盖 CDN 路径、缓存校验、失败回退、并发合并和剧情隔离。Unity/ARM64 hook、剧情语音中断和中文字体显示仍需在设备中验证。
 
 源码位于 `src/AyarabuMod`，测试位于 `tests/AyarabuMod.Tests`。构建和 CI 细节见[公共工程说明](https://github.com/anosu/ModEngineering/blob/main/docs/CONVENTIONS.md)，编译引用见 [dependencies/README.md](dependencies/README.md)。
 
