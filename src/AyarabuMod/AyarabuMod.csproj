@@ -6,7 +6,7 @@
         <Product>AyarabuMod</Product>
         <RootNamespace>AyarabuMod</RootNamespace>
         <Authors>Jitsu</Authors>
-        <Version>1.0.0</Version>
+        <Version>1.1.0</Version>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
