@@ -22,26 +22,15 @@ public sealed class Core : MelonMod
     internal static TranslationManager? Translation;
     internal static MelonLogger.Instance? Log;
 
-    /// <summary>创建翻译会话并注册当前 APK 的补丁。</summary>
+    /// <summary>初始化日志转发、配置与补丁，随后按需创建翻译会话。</summary>
     public override void OnInitializeMelon()
     {
         Log = LoggerInstance;
         try
         {
-            Logging.SetSink(entry =>
-            {
-                string message = $"[{entry.Category}] {entry.Message}";
-                if (entry.Exception != null)
-                    message += $"\n{entry.Exception}";
-                if (entry.Level == LogLevel.Error)
-                    Log?.Error(message);
-                else if (entry.Level == LogLevel.Warning)
-                    Log?.Warning(message);
-                else
-                    Log?.Msg(message);
-            });
-            Toast.Initialize("AyarabuMod.ToastManager");
+            InitializeUtility();
             Config.Initialize();
+            PatchManager.Initialize();
             if (!Config.Enabled.Value)
             {
                 Toast.Info(ModInfo.Name, "Mod 已加载，翻译功能已关闭");
@@ -56,7 +45,6 @@ public sealed class Core : MelonMod
                     _client
                 )
             );
-            HarmonyInstance.PatchAll(typeof(TranslationPatch).Assembly);
             Translation.Warmup();
             Logger.Info(
                 $"{ModInfo.Name} {ModInfo.Version} loaded; AdventureTask.createTask / AdvMessage.initialize patched"
@@ -70,10 +58,10 @@ public sealed class Core : MelonMod
         }
     }
 
-    /// <summary>取消后台加载并卸载补丁。</summary>
+    /// <summary>卸载补丁并取消后台加载。</summary>
     public override void OnDeinitializeMelon()
     {
-        HarmonyInstance.UnpatchSelf();
+        PatchManager.Shutdown();
         Translation?.Dispose();
         Translation = null;
         _client?.Dispose();
@@ -81,11 +69,21 @@ public sealed class Core : MelonMod
         Toast.Shutdown();
         Logging.SetSink(null);
     }
-}
 
-internal static class Logger
-{
-    internal static void Info(string message) => Core.Log?.Msg(message);
-
-    internal static void Warn(string message) => Core.Log?.Warning(message);
+    private static void InitializeUtility()
+    {
+        Logging.SetSink(entry =>
+        {
+            string message = $"[{entry.Category}] {entry.Message}";
+            if (entry.Exception != null)
+                message += $"\n{entry.Exception}";
+            if (entry.Level == LogLevel.Error)
+                Log?.Error(message);
+            else if (entry.Level == LogLevel.Warning)
+                Log?.Warning(message);
+            else
+                Log?.Msg(message);
+        });
+        Toast.Initialize("AyarabuMod.ToastManager");
+    }
 }
