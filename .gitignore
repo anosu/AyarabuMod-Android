@@ -11,9 +11,6 @@
 artifacts/
 .build-check/
 
-# Full local Interop export; only required references belong in Git
-/dependencies/interop-backup/
-
 # Local packages and logs
 *.nupkg
 *.snupkg
@@ -25,10 +22,4 @@ artifacts/
 /dependencies/managed/
 # Visual Studio solution containing machine-local shared project paths
 /*.local.slnx
-
-artifacts/
-**/bin/
-**/obj/
-*.local.slnx
-SharedDependencies.local.props
-Build.local.props
+/Build.local.props
