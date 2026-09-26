@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <Import Project="$(ModRepositoryRoot)shared/ModEngineering/build/Android.props" />
     <PropertyGroup>
-        <UseUnityCoreAlias>true</UseUnityCoreAlias>
         <Authors>Jitsu</Authors>
         <Version>1.1.0</Version>
         <Nullable>enable</Nullable>
