@@ -1,31 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <Import Project="$(ModRepositoryRoot)shared/ModEngineering/build/Android.props" />
     <PropertyGroup>
-        <AssemblyName>AyarabuMod</AssemblyName>
-        <Product>AyarabuMod</Product>
-        <RootNamespace>AyarabuMod</RootNamespace>
+        <UseUnityCoreAlias>true</UseUnityCoreAlias>
         <Authors>Jitsu</Authors>
         <Version>1.1.0</Version>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
-    <ItemGroup>
-        <Reference
-            Include="Assembly-CSharp"
-            HintPath="$(GameInteropReferenceDirectory)/Assembly-CSharp.dll"
-            Private="false"
-        />
-        <Reference
-            Include="Il2Cppmscorlib"
-            HintPath="$(GameInteropReferenceDirectory)/Il2Cppmscorlib.dll"
-            Private="false"
-        />
-        <Reference
-            Include="UnityEngine.CoreModule"
-            HintPath="$(GameInteropReferenceDirectory)/UnityEngine.CoreModule.dll"
-            Aliases="UnityCore"
-            Private="false"
-        />
-    </ItemGroup>
     <Import Project="$(ModRepositoryRoot)shared/ModEngineering/build/SharedDependencies.props" />
 </Project>
